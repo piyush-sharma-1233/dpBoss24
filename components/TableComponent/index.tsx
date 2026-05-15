@@ -9,13 +9,6 @@ for (let i = 0; i + 1 < times.length; i += 2) {
   timePairs.push([times[i], times[i + 1]]);
 }
 
-const redColour = [
-  "00", "50", "05", "55",
-  "11", "61", "16", "66",
-  "22", "72", "27", "77",
-  "33", "83", "38", "88",
-  "44", "94", "49", "99",
-];
 
 const TableComponent: React.FC<{
   data: any[];
@@ -37,13 +30,6 @@ const TableComponent: React.FC<{
     if (!digit) return false;
     if (timeStr === currentResultTime) return rollingComplete;
     return hasTimePassed(timeStr);
-  };
-
-  const jodiColor = (jodi: string) => {
-    // Only colour when both digits are real (no placeholder "-")
-    if (jodi.includes("-")) return "black";
-    const last2 = jodi.padStart(2, "0").slice(-2);
-    return redColour.includes(last2) ? "red" : "black";
   };
 
   const getDigit = (timeStr: string): string => {
@@ -88,8 +74,6 @@ const TableComponent: React.FC<{
             const jodi =
               (leftDigit || "-") + (rightDigit || "-");
 
-            const color = jodiColor(jodi);
-
             return (
               <tr key={idx} className="border border-red-500">
                 {/* Left time */}
@@ -107,8 +91,7 @@ const TableComponent: React.FC<{
                 {/* Jodi — center highlight */}
                 <td className="border border-red-500 text-center px-1 py-[3px]">
                   <span
-                    className="font-extrabold text-lg sm:text-xl"
-                    style={{ color }}
+                    className="font-extrabold text-lg sm:text-xl text-red-600"
                   >
                     {jodi}
                   </span>
