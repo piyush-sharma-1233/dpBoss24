@@ -1,0 +1,425 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fff3c2;
+  --foreground: #171717;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.border-gradient {
+  --tw-border-opacity: 1;
+  border-image: linear-gradient(
+      to right,
+      rgba(59, 130, 246, var(--tw-border-opacity)) 0%,
+      rgba(93, 148, 240, var(--tw-border-opacity)) 100%
+    )
+    1;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  width: 100%;
+  min-height: 80vh;
+  padding: 8px;
+  overflow: hidden;
+
+  position: relative;
+  margin-bottom: 20px;
+  border: 2px solid #ff0016;
+  border-radius: 0.75em;
+  box-shadow: 0 0 20px 0 rgb(0 0 0 / 40%);
+}
+
+:root {
+  --color-theme: #f9cf52;
+  --color-yellow: #c1912d;
+  --color-red: #87170f;
+  --color-white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bg-red {
+  background-color: var(--color-red);
+}
+
+.h2,
+h2 {
+  font-size: 64px;
+}
+
+.h3,
+h3 {
+  font-size: 51px;
+}
+
+.h4,
+h4 {
+  font-size: 32px;
+}
+.text-xl {
+  font-size: 24px;
+}
+.text-white {
+  color: var(--color-white) !important;
+}
+
+.text-theme {
+  color: var(--color-theme);
+}
+
+.text-yellow {
+  color: var(--color-yellow);
+}
+
+.gradient-text {
+  /* background: -webkit-linear-gradient(
+		#f9c725,
+		#c1912d,
+		#c1912d,
+		#c1912d,
+		#fff9ca,
+		#fff9ca,
+		#824a00,
+		#c1912d,
+		#c1912d,
+		#c1912d
+	); */
+  /* background: -webkit-linear-gradient(
+		#ece250,
+		#e0aa3e,
+		#beb63c,
+		#e2b168,
+		#e4db58
+		
+	); */
+  background: -webkit-linear-gradient(
+    #f9c725,
+    #c1912d,
+    #c1912d,
+    #c1912d,
+    #fff9ca,
+    #fff9ca,
+    #824a00,
+    #c1912d,
+    #c1912d,
+    #c1912d
+  );
+
+  /* background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(112,80,32,1) 79%, rgba(135,94,34,1) 87%, rgba(172,125,47,1) 100%); */
+  -webkit-background-clip: text;
+  /* background-color:#000000 ; */
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-red {
+  background-color: var(--color-red);
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.win-title {
+  max-width: 1080px;
+  /* width:100%; */
+}
+.ticket-container {
+  min-height: 70vh;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-position: center;
+  background-image: url("../public/assets/22.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-img-container {
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-img-container img {
+  object-fit: cover;
+}
+.bg-blue {
+  background-color: #1a237e;
+}
+.win-title {
+  position: absolute;
+  top: 20%;
+  left: 14%;
+  font-size: 35px !important;
+}
+
+@keyframes animation-1 {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.pattern {
+  object-fit: contain;
+  min-width: 140px;
+  min-height: 140px;
+  position: absolute;
+  animation-name: animation-1;
+  animation-duration: 5s;
+  animation-delay: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 1;
+}
+
+.bg-image-container {
+  width: 600px;
+  height: 540px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.pattern.md {
+  min-width: 260px;
+  min-height: 260px;
+}
+
+.pattern-top {
+  top: -5%;
+  left: 18%;
+}
+
+.pattern-top-center {
+  top: 0;
+  left: 40%;
+}
+
+.pattern-top-center-right {
+  top: -6%;
+  right: 32%;
+}
+
+.pattern-top-right {
+  right: 18%;
+  top: -5%;
+}
+
+.pattern-center-left {
+  top: 20%;
+  left: 10%;
+}
+
+.pattern-center-center {
+  top: 10%;
+  left: 52%;
+}
+
+.pattern-center-right {
+  top: 35%;
+  right: 18%;
+}
+
+.pattern-bottom-left {
+  bottom: 0;
+  left: 20%;
+}
+
+.pattern-bottom-right {
+  bottom: 0;
+  right: 25%;
+}
+
+.init-timer,
+.exit-timer {
+  font-size: 24px;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.ticketId-wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.win-number {
+  position: absolute;
+  top: 55%;
+  font-size: 100px;
+}
+
+.win-number-left {
+  left: 0;
+  transform: translateX(106%);
+}
+
+.win-number-center {
+  left: 35%;
+}
+
+.win-number-right {
+  left: 58%;
+}
+
+/* Slot Machine Animation */
+
+.animation-wrapper {
+  width: 100%;
+  height: 90vh;
+}
+#app {
+  width: 100%;
+  height: 100%;
+  background: #1a2b45;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.doors {
+  display: flex;
+}
+.door {
+  width: 70px;
+  height: 170px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-left: -30px;
+}
+
+.door:nth-child(2) {
+  margin-left: -15px;
+}
+
+.door:nth-child(3) {
+  margin-left: -15px;
+}
+
+.boxes {
+  transition: transform 1s ease-in-out;
+  text-align: center;
+  transform: translateY(0);
+}
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 3rem; */
+  font-weight: 700;
+  background: -webkit-linear-gradient(
+    #f9c725,
+    #c1912d,
+    #c1912d,
+    #c1912d,
+    #fff9ca,
+    #fff9ca,
+    #824a00,
+    #c1912d,
+    #c1912d,
+    #c1912d
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* text-shadow: #1a2b45; */
+}
+
+/* canvas{display:block} */
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 24px;
+  }
+  .win-title {
+    font-size: 24px !important;
+    left: 15%;
+  }
+  .win-number {
+    font-size: 60px;
+  }
+  .win-number-left {
+    transform: translateX(10%);
+  }
+  .win-number-center {
+    left: 26%;
+  }
+  .win-number-right {
+    left: 50%;
+  }
+  .ticket-container {
+    min-height: 100%;
+  }
+  .wrapper {
+    height: 100%;
+    min-height: 100%;
+  }
+  .init-timer,
+  .exit-timer {
+    font-size: 18px;
+  }
+  .door {
+    margin-left: 0 !important;
+    height: 80px;
+    width: 85px;
+  }
+  .hero-img-container {
+    max-width: 300px;
+  }
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* optional: limit max size */
+  margin: 0 auto;
+  /* 16:9 ratio = 9 / 16 = 0.5625 => 56.25% */
+  padding-top: 56.25%;
+}
+
+.video-wrapper > video {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  display: block;
+}

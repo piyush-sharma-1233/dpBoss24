@@ -1,0 +1,40 @@
+.carousel {
+  display: flex;
+  gap: 36px;
+  animation: carousel 2s linear infinite;
+  width: max-content;
+}
+
+.carousel::after {
+  /* content: ""; */
+  width: 100%;
+}
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.carousel {
+  display: flex;
+  gap: 40px;
+  animation: carousel 10s linear infinite;
+  width: max-content;
+}
+
+.carousel::after {
+  /* content: ""; */
+  width: 100%;
+}
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

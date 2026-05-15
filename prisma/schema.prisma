@@ -1,0 +1,40 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model LuckyNumber {
+  id        Int     @id @default(autoincrement())
+  number    String
+  date      String 
+  time      String
+  userId    Int
+  user     User   @relation(fields: [userId], references: [id])
+
+  @@map("lucky_numbers") 
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  userName  String
+  password  String
+  luckyNumbers LuckyNumber[]
+  videoLinks VideoLink[]
+
+  @@map("users")
+}
+
+model VideoLink {
+  id        Int     @id @default(autoincrement())
+  videoLink String  @unique
+  userId    Int
+  user     User   @relation(fields: [userId], references: [id])
+
+  @@map("video_links")
+}
