@@ -51,8 +51,8 @@ const AddResult = () => {
   const handleNumberInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
-    // Allow only numeric input and restrict to a maximum of 2 digits
-    if (/^\d{0,2}$/.test(value)) {
+    // Allow only numeric input and restrict to a maximum of 1 digit
+    if (/^\d{0,1}$/.test(value)) {
       setNumberInput(value);
       setError(null); // Clear error if input is valid
     }
@@ -67,8 +67,8 @@ const AddResult = () => {
     e.preventDefault();
     setError(null);
 
-    if (numberInput.length !== 2) {
-      setError("Please enter exactly 2 digits.");
+    if (numberInput.length !== 1) {
+      setError("Please enter exactly 1 digit.");
       return;
     }
     if (!timeInput) {
@@ -188,13 +188,13 @@ const AddResult = () => {
               {/* Number Input */}
               <div className="mb-4">
                 <label className="block text-gray-700 font-medium mb-1">
-                  Number (2 digits only)
+                  Number (1 digit only)
                 </label>
                 <input
                   type="text"
-                  className={`w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-indigo-300 ${error && numberInput.length !== 2 ? "border-red-500" : ""
+                  className={`w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-indigo-300 ${error && numberInput.length !== 1 ? "border-red-500" : ""
                     }`}
-                  placeholder="Enter a 2-digit number"
+                  placeholder="Enter a 1-digit number (0–9)"
                   value={numberInput}
                   onChange={handleNumberInputChange}
                 />
@@ -233,9 +233,9 @@ const AddResult = () => {
               <button
                 type="submit"
                 disabled={
-                  numberInput.length !== 2 || !timeInput || isSubmitting
+                  numberInput.length !== 1 || !timeInput || isSubmitting
                 }
-                className={`w-full py-2 px-4 bg-gray-800 text-yellow-500 rounded-lg ${numberInput.length !== 2 || !timeInput || isSubmitting
+                className={`w-full py-2 px-4 bg-gray-800 text-yellow-500 rounded-lg ${numberInput.length !== 1 || !timeInput || isSubmitting
                     ? "opacity-50 cursor-not-allowed"
                     : "cursor-pointer"
                   }`}
