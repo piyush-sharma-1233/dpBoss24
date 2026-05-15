@@ -40,7 +40,7 @@ export default function Charts() {
   };
 
   return (
-    <div className="flex flex-col py-4 gap-4 px-2 sm:px-4 w-full min-h-screen font-[family-name:var(--font-geist-sans)] bg-yellow-100 2xl:container mx-auto">
+    <div className="flex flex-col py-4 gap-4 px-2 sm:px-4 w-full  font-[family-name:var(--font-geist-sans)] bg-yellow-100 2xl:container mx-auto">
       <div className="flex items-center gap-3">
         <DatePicker
           id="weekPicker"
@@ -163,7 +163,7 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
 
   useEffect(() => {
     loadData(currentDate);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDate]);
 
   /* ── render ── */
@@ -175,9 +175,9 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
       // Pre-compute per-day values for this pair
       const dayValues = daysOfWeek.map((day, dIdx) => {
         const dayDate = weekDates[dIdx];
-        const rawTop    = weekData[t1]?.[day] ?? "";
+        const rawTop = weekData[t1]?.[day] ?? "";
         const rawBottom = weekData[t2]?.[day] ?? "";
-        const topDigit    = hasTimePassed(t1, dayDate) ? rawTop    : "";
+        const topDigit = hasTimePassed(t1, dayDate) ? rawTop : "";
         const bottomDigit = hasTimePassed(t2, dayDate) ? rawBottom : "";
 
         // Jodi = concat of both single digits (new format)
@@ -197,7 +197,7 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
           {/* ── top time row ── */}
           <tr className="border-t-2 border-red-400">
             {/* time label */}
-            <td className="px-1 sm:px-2 py-1 sm:py-2 text-[10px] sm:text-xs font-semibold border border-red-400 text-left whitespace-nowrap bg-yellow-50 w-[72px] sm:w-[88px]">
+            <td className="px-1 sm:px-2 py-1 sm:py-2 text-[10px] sm:text-xs font-semibold border border-red-400 text-left whitespace-nowrap bg-yellow-100 w-[72px] sm:w-[88px]">
               {t1}
             </td>
 
@@ -208,7 +208,7 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
                   {/* single digit – top */}
                   <td className="border border-red-400 text-center py-1 sm:py-2 w-7 sm:w-9">
                     <span className="font-bold text-sm sm:text-base text-black">
-                      {topDigit}
+                      {topDigit || "-"}
                     </span>
                   </td>
 
@@ -218,14 +218,12 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
                     className="border border-red-400 text-center align-middle w-9 sm:w-12 bg-yellow-100"
                     style={{ verticalAlign: "middle" }}
                   >
-                    {jodi && (
-                      <span
-                        className="font-extrabold text-base sm:text-xl leading-none"
-                        style={{ color }}
-                      >
-                        {jodi}
-                      </span>
-                    )}
+                    <span
+                      className="font-extrabold text-base sm:text-xl leading-none"
+                      style={{ color: jodi ? color : "black" }}
+                    >
+                      {jodi || "-"}
+                    </span>
                   </td>
                 </React.Fragment>
               );
@@ -235,7 +233,7 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
           {/* ── bottom time row ── */}
           <tr className="border-b-2 border-red-400">
             {/* time label */}
-            <td className="px-1 sm:px-2 py-1 sm:py-2 text-[10px] sm:text-xs font-semibold border border-red-400 text-left whitespace-nowrap bg-yellow-50">
+            <td className="px-1 sm:px-2 py-1 sm:py-2 text-[10px] sm:text-xs font-semibold border border-red-400 text-left whitespace-nowrap bg-yellow-100">
               {t2}
             </td>
 
@@ -246,7 +244,7 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
                 className="border border-red-400 text-center py-1 sm:py-2 w-7 sm:w-9"
               >
                 <span className="font-bold text-sm sm:text-base text-black">
-                  {bottomDigit}
+                  {bottomDigit || "-"}
                 </span>
               </td>
             ))}
@@ -256,12 +254,12 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
     });
 
   if (loading) return <div className="text-center p-6 text-gray-600">Loading data…</div>;
-  if (error)   return <div className="text-center p-6 text-red-500">{error}</div>;
+  if (error) return <div className="text-center p-6 text-red-500">{error}</div>;
 
   return (
     <div className="w-full overflow-x-auto rounded shadow-sm">
       <table
-        className="border-2 border-red-500 bg-yellow-50 text-sm"
+        className="border-2 border-red-500 bg-yellow-50 text-sm w-full"
         style={{ borderCollapse: "collapse", minWidth: "600px" }}
       >
         <thead>
