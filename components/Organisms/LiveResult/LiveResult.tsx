@@ -16,10 +16,10 @@ import NumberRibbon from "@/components/NumberRibbon/NumberRibbon";
 //   }
 // );
 const LiveResult: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [loading, setLoading] = useState(true);
   console.log("loading", loading);
-  const [currentNumber, setCurrentNumber] = useState("");
+  const [currentNumber, setCurrentNumber] = useState("5");
   const [currentTime, setCurrentTime] = useState("");
   const [rollingComplete, setRollingComplete] = useState(false);
   const [currentResultTime, setCurrentResultTime] = useState("");
