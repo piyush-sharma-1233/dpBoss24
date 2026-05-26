@@ -183,7 +183,7 @@ export default function CurtainIntro({
             className="text-8xl font-bold mb-4"
             style={{
               fontFamily: "Georgia, serif",
-              letterSpacing: "0.1em",
+              lineHeight: "normal !important",
             }}
           >
             {LETTERS.map((letter: string, index: number) => (
@@ -209,7 +209,7 @@ export default function CurtainIntro({
             ))}
           </h1>
           <div
-            className="h-1 mx-auto mt-6 rounded-full animate-pulse"
+            className="h-1 mx-auto mt-4 rounded-full animate-pulse"
             style={{
               width: "300px",
               background:
