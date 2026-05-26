@@ -17,7 +17,7 @@ import NumberRibbon from "@/components/NumberRibbon/NumberRibbon";
 // );
 const LiveResult: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [currentNumber, setCurrentNumber] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [rollingComplete, setRollingComplete] = useState(false);

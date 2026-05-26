@@ -266,7 +266,7 @@ const Banner = ({
   };
 
   const handleDigitComplete = () => {
-    onRollingComplete && onRollingComplete();
+    if (onRollingComplete) { onRollingComplete(); }
     speak("The final number is " + counter + ".");
   };
 
