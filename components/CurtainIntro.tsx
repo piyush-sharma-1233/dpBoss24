@@ -129,8 +129,7 @@ export default function CurtainIntro({
             className="text-4xl sm:text-7xl font-bold flex justify-center items-center !leading-none"
             style={{
               fontFamily: "Georgia, serif",
-              letterSpacing: "0.1em",
-              lineHeight: "none !important",
+              lineHeight: "normal !important",
             }}
           >
             {LETTERS.map((letter: string, index: number) => (
