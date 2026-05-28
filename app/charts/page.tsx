@@ -17,14 +17,6 @@ for (let i = 0; i + 1 < times.length; i += 2) {
   timePairs.push([times[i], times[i + 1]]);
 }
 
-const redColour = [
-  "00", "50", "05", "55",
-  "11", "61", "16", "66",
-  "22", "72", "27", "77",
-  "33", "83", "38", "88",
-  "44", "94", "49", "99",
-];
-
 export default function Charts() {
   const [selectedWeek, setSelectedWeek] = useState<Date>(new Date());
   const datePickerRef = useRef<DatePicker>(null);
@@ -97,8 +89,7 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
 
   const jodiColor = (jodi: string) => {
     if (!jodi) return "black";
-    const last2 = jodi.padStart(2, "0").slice(-2);
-    return redColour.includes(last2) ? "red" : "black";
+    return "black";
   };
 
   /* ── data loading ── */

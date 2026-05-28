@@ -16,10 +16,10 @@ const speak = (text: string, rate = 0.3) => {
 
 /* ─── Spin phases: [interval_ms, step_count] ─────────────────────────────── */
 const SPIN_PHASES: [number, number][] = [
-  [55,  30],  // fast   ~1.65 s
-  [110, 10],  // medium ~1.1 s
-  [200,  7],  // slow   ~1.4 s
-  [360,  5],  // crawl  ~1.8 s
+  [55,  60],  // fast   ~3.3 s
+  [110, 20],  // medium ~2.2 s
+  [200, 14],  // slow   ~2.8 s
+  [360, 10],  // crawl  ~3.6 s
 ];
 
 /* ─── Spinning digit ─────────────────────────────────────────────────────── */
@@ -236,6 +236,7 @@ const Banner = ({
 }): JSX.Element => {
   const counter = Number(currentNumber);
   const [showBackground, setShowBackground] = useState(false);
+  const [bgVisible, setBgVisible]           = useState(false);
   const [showDigit, setShowDigit]           = useState(false);
 
   /*
@@ -254,6 +255,12 @@ const Banner = ({
     return () => window.removeEventListener("resize", calc);
   }, []);
 
+  /* Preload bg.png immediately so it's cached before the curtain finishes */
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = "/assets/bg.png";
+  }, []);
+
   const synthRef = useRef<SpeechSynthesis | null>(null);
   useEffect(() => {
     if (typeof window !== "undefined") synthRef.current = window.speechSynthesis;
@@ -262,12 +269,24 @@ const Banner = ({
 
   const handleCurtainComplete = () => {
     setShowBackground(true);
-    setTimeout(() => setShowDigit(true), 2000);
+    /* Small delay so the element is mounted before opacity transitions to 1 */
+    setTimeout(() => setBgVisible(true), 50);
+    setTimeout(() => setShowDigit(true), 2500);
   };
 
   const handleDigitComplete = () => {
-    if (onRollingComplete) { onRollingComplete(); }
-    speak("The final number is " + counter + ".");
+    if (onRollingComplete) onRollingComplete();
+    /* Play the pre-recorded number audio (0.mp3 – 9.mp3) */
+    try {
+      const audio = new Audio("/assets/" + counter + ".mp3");
+      audio.volume = 1;
+      audio.play().catch(() => {
+        /* Fallback to speech synthesis if audio play is blocked */
+        speak("The final number is " + counter + ".");
+      });
+    } catch {
+      speak("The final number is " + counter + ".");
+    }
   };
 
   return (
@@ -279,16 +298,24 @@ const Banner = ({
     <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
       <main
         className="absolute inset-0 flex items-center justify-center overflow-hidden"
-        style={{
-          background: "#000000",
-          ...(showBackground && {
-            backgroundImage:    "url('/assets/bg.png')",
-            backgroundSize:     "cover",
-            backgroundPosition: "center center",
-            backgroundRepeat:   "no-repeat",
-          }),
-        }}
+        style={{ background: "#000000" }}
       >
+        {/* bg.png — fades in over 1.2s once curtain completes */}
+        {showBackground && (
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:    "url('/assets/bg.png')",
+              backgroundSize:     "cover",
+              backgroundPosition: "center center",
+              backgroundRepeat:   "no-repeat",
+              opacity:            bgVisible ? 1 : 0,
+              WebkitTransition:   "opacity 1.2s ease-in",
+              transition:         "opacity 1.2s ease-in",
+            }}
+          />
+        )}
+
         {/* Curtain intro until bg is ready */}
         {!showBackground && <CurtainIntro onComplete={handleCurtainComplete} />}
 

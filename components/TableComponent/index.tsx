@@ -91,7 +91,7 @@ const TableComponent: React.FC<{
                 {/* Jodi — center highlight */}
                 <td className="border border-red-500 text-center px-1 py-[3px]">
                   <span
-                    className="font-extrabold text-lg sm:text-xl text-red-600"
+                    className="font-extrabold text-lg sm:text-xl"
                   >
                     {jodi}
                   </span>

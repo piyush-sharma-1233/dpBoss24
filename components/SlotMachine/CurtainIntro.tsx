@@ -60,13 +60,26 @@ export default function CurtainIntro({
 
   // Main animation sequence
   useEffect(() => {
-    // Start curtain opening after 1 second
-    // Play background music
-    if (bgMusicRef.current) {
-      bgMusicRef.current.play().catch((error) => {
-        console.error("Error playing background music:", error);
+    // Attempt to play music immediately (works on TV browsers / allowed contexts).
+    // If blocked by autoplay policy, attach a one-time interaction listener as fallback.
+    const tryPlay = () => {
+      if (!bgMusicRef.current) return;
+      bgMusicRef.current.play().catch(() => {
+        // Blocked — wait for first user interaction then retry
+        const unlock = () => {
+          if (bgMusicRef.current) {
+            bgMusicRef.current.play().catch(() => {});
+          }
+          document.removeEventListener("click",      unlock);
+          document.removeEventListener("touchstart", unlock);
+          document.removeEventListener("keydown",    unlock);
+        };
+        document.addEventListener("click",      unlock, { once: true });
+        document.addEventListener("touchstart", unlock, { once: true });
+        document.addEventListener("keydown",    unlock, { once: true });
       });
-    }
+    };
+    tryPlay();
     const curtainTimer = setTimeout(() => {
       // Start the curtain opening sequence
       setCurtainOpen(true);
