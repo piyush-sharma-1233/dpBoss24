@@ -26,3 +26,11 @@ export const times = [
 ];
 
 export const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+export const redJodis = new Set([
+  "00","05","55","50",
+  "16","11","61","66",
+  "22","27","77","72",
+  "33","38","83","88",
+  "44","49","94","99",
+]);

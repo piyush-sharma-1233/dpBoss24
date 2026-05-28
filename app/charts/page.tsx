@@ -5,7 +5,7 @@ import { getAllRowsByMonthYear } from "../actions/action";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import { times, daysOfWeek } from "@/lib/times";
+import { times, daysOfWeek, redJodis } from "@/lib/times";
 
 interface WeekData {
   [time: string]: { [day: string]: string };
@@ -87,10 +87,8 @@ const Table = ({ currentDate }: { currentDate: Date }) => {
     return moment().isAfter(scheduled.clone().add(1, "minutes"));
   };
 
-  const jodiColor = (jodi: string) => {
-    if (!jodi) return "black";
-    return "black";
-  };
+  const jodiColor = (jodi: string) =>
+    redJodis.has(jodi) ? "red" : "black";
 
   /* ── data loading ── */
 

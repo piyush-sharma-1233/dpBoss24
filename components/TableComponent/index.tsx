@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import moment from "moment";
 import React, { useState, useEffect } from "react";
-import { times } from "@/lib/times";
+import { times, redJodis } from "@/lib/times";
 
 // Build 12 time pairs: [[times[0],times[1]], [times[2],times[3]], ...]
 const timePairs: [string, string][] = [];
@@ -74,6 +74,9 @@ const TableComponent: React.FC<{
             const jodi =
               (leftDigit || "-") + (rightDigit || "-");
 
+            const jodiValue = leftDigit && rightDigit ? leftDigit + rightDigit : null;
+            const jodiColor = jodiValue && redJodis.has(jodiValue) ? "red" : "black";
+
             return (
               <tr key={idx} className="border border-red-500">
                 {/* Left time */}
@@ -92,6 +95,7 @@ const TableComponent: React.FC<{
                 <td className="border border-red-500 text-center px-1 py-[3px]">
                   <span
                     className="font-extrabold text-lg sm:text-xl"
+                    style={{ color: jodiColor }}
                   >
                     {jodi}
                   </span>
