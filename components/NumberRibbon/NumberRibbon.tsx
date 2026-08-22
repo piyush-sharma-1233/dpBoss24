@@ -38,27 +38,27 @@ const NumberRibbon = ({
 
   const data = times.map((time, index) => {
     const resultItem = logos.find((item: any) => item.time === time);
-    const numberValue = resultItem ? resultItem.number : "000";
-    const finalDigit = numberValue
-      ? String(sumOfDigits(numberValue)).slice(-1)
-      : "0";
+    const hasNumber = !!(resultItem && resultItem.number);
+    const numeric = hasNumber ? Number(resultItem.number) : NaN;
+    const finalDigit = !isNaN(numeric) ? String(sumOfDigits(numeric)).slice(-1) : "0";
 
-    let hasPassed;
+    let hasPassed: boolean;
     if (time === currentResultTime) {
       // For currently rolling result, only show if rolling is complete
-      hasPassed = rollingComplete;
+      hasPassed = !!rollingComplete;
     } else {
       // For past results, use existing delay logic
-      hasPassed = moment().isAfter(moment(time, "hh:mm A").add(2, 'minutes'));
+      hasPassed = moment().isAfter(moment(time, "hh:mm A").add(2, "minutes"));
     }
 
-    const displayValue = hasPassed
-      ? `${numberValue || "000"}-${finalDigit}`
-      : `000-0`;
+    // Display a single digit: '0' when not available or not yet passed; final digit when available
+    const displayValue = hasPassed && hasNumber ? finalDigit : "0";
 
     return {
       id: index + 1,
       title: `${time}: ${displayValue}`,
+      hasPassed,
+      hasNumber,
     };
   });
   return (
@@ -70,9 +70,9 @@ const NumberRibbon = ({
             key={`first-${item.id}`}
             className={styles.ribbon__item}
             style={{
-              color: item.title.includes("000-0") ? "black" : "red",
-              fontStyle: item.title.includes("000-0") ? "normal" : "italic",
-              fontWeight: item.title.includes("000-0") ? "normal" : "bold",
+              color: item.hasPassed && item.hasNumber ? "red" : "black",
+              fontStyle: item.hasPassed && item.hasNumber ? "italic" : "normal",
+              fontWeight: item.hasPassed && item.hasNumber ? "bold" : "normal",
             }}
           >
             {item.title}
@@ -84,9 +84,9 @@ const NumberRibbon = ({
             key={`second-${item.id}`}
             className={styles.ribbon__item}
             style={{
-              color: item.title.includes("000-0") ? "black" : "red",
-              fontStyle: item.title.includes("000-0") ? "normal" : "italic",
-              fontWeight: item.title.includes("000-0") ? "normal" : "bold",
+              color: item.hasPassed && item.hasNumber ? "red" : "black",
+              fontStyle: item.hasPassed && item.hasNumber ? "italic" : "normal",
+              fontWeight: item.hasPassed && item.hasNumber ? "bold" : "normal",
             }}
           >
             {item.title}

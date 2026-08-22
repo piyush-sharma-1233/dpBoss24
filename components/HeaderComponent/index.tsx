@@ -96,7 +96,7 @@ const HeaderComponent = () => {
               </li>
               {session ? (
                 <>
-                  <li>
+                  {/* <li>
                     <Link
                       href="/add-videos"
                       className="py-3 text-white hover:opacity-50 text-lg font-semibold font-sans hover:border-[#FFF3C2] hover:border-b"
@@ -104,7 +104,7 @@ const HeaderComponent = () => {
                     >
                       Add Videos
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link
                       href="/add-results"

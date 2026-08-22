@@ -15,6 +15,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  secret: process.env.AUTH_SECRET,
   trustHost: true, // ✅ Add this line
   session: {
     strategy: "jwt",
